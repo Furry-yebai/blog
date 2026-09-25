@@ -62,9 +62,23 @@
               "icon": "lucide-file",
               "title": "furryapi功能征集"
             }
+          },
+          {
+            "id": "85a64e470188a7ad",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "posts/利用AxisNow实现免费高速度的CDN.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "利用AxisNow实现免费高速度的CDN"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -212,45 +226,45 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c8a2ea6ead96063f",
+  "active": "85a64e470188a7ad",
   "lastOpenFiles": [
-    "posts/一些吐槽吧.md",
+    "assets/images/QQ_1790354292831.png",
+    "assets/images/QQ_1790353976746.png",
+    "assets/images/QQ_1790349839511.png",
+    "posts/wtf-bor-25-12-23.md",
+    "posts/利用AxisNow实现免费高速度的CDN.md",
+    "posts/持续更新.md",
+    "posts/未命名.md",
     "posts/furryapi功能征集.md",
+    "posts/16岁.md",
+    "posts/25-8-7歌曲推荐-i-love-you-so.md",
+    "posts/2025-8-25-推荐歌曲-追梦赤子心-gala.md",
+    "posts/2026happy-new-year.md",
+    "posts/记录优化furry随机图api的过程.md",
+    "posts/已为本站支持自动清除cloudflare缓存.md",
+    "posts/typecho在cloudflare的缓存规则.md",
+    "posts/一些吐槽吧.md",
     "posts/github学生包？拿来吧你.md",
     "posts/完全基于cloudflare的动态随机图片api.md",
     "posts/福瑞随机图api更新-25-9-6.md",
     "posts/记录一下api后端的代码.md",
-    "posts/记录优化furry随机图api的过程.md",
-    "posts/16岁.md",
     "assets/images/16th生贺.png",
     "assets/images/16th生贺.jfif",
-    "posts/25-8-7歌曲推荐-i-love-you-so.md",
     "posts/16th！.md",
-    "posts/2026happy-new-year.md",
     "posts/2025年的51hifurry之旅.md",
-    "posts/2025-8-25-推荐歌曲-追梦赤子心-gala.md",
-    "posts/typecho在cloudflare的缓存规则.md",
     "posts/start.md",
     "posts/Github学生包？拿来吧你.md",
     "posts/咕咕咕.md",
     "posts/furryapi_update-25-8-7.md",
-    "posts/已为本站支持自动清除cloudflare缓存.md",
     "posts/我不要开学-2025.md",
     "posts/推荐歌曲《反乌托邦》.md",
-    "posts/骑单车.md",
     "assets/images/白云国际会议中心DSC01755_compressed.jpg",
-    "posts/貌似不知道写什么好.md",
-    "posts/对于Typecho动态内容的防护规则.md",
-    "posts/初中的结束.md",
-    "posts/本站已迁移至fuwari.md",
     "assets/images/typecho在cloudflare的缓存规则-4.png",
     "assets/images/typecho在cloudflare的缓存规则-3.png",
     "assets/images/typecho在cloudflare的缓存规则-2.png",
     "assets/images/typecho在cloudflare的缓存规则-1.png",
     "assets/images/typecho在cloudflare的缓存规则.png",
     "assets/images/Pasted image 20260111022515.png",
-    "assets/images/对于Typecho动态内容的防护规则.png",
-    "assets/images/Github学生包？拿来吧你-7.png",
     "assets/images/白云国际会议中心DSC01755.jfif"
   ]
 }
