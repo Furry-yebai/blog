@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "astro build",
+		"build": "node scripts/sync-friend-avatars.mjs --build && astro build",
 		"preview": "astro preview",
 		"astro": "astro",
 		"type-check": "tsc --noEmit",
@@ -21,6 +21,7 @@
 		"test:arcade": "pnpm build && pnpm test:arcade-contract",
 		"verify:arcade-stats": "pnpm build && node scripts/verify-arcade-live-stats.mjs",
 		"new-post": "node scripts/new-post.js",
+		"sync:friends": "node scripts/sync-friend-avatars.mjs",
 		"clean": "node scripts/clean-unused-images.js",
 		"format": "biome format --write ./src",
 		"lint": "biome check --write ./src"

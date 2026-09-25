@@ -71,6 +71,8 @@ jobs:
             "src/layouts/",
             "src/components/",
             "src/middleware/",
+            "src/data/",
+            "src/assets/",
             "content/",
             "posts/",
             "src/posts/",

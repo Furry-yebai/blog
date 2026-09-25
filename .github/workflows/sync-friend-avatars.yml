@@ -1,0 +1,61 @@
+name: Sync Friend Avatars
+
+# 发布时拉取：友链数据变更后拉取一次头像并提交进仓库，作为构建失败时的回退
+# 海外 runner 拉不到的头像，可在本地执行 `pnpm sync:friends` 后提交补齐
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "src/data/friends/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: sync-friend-avatars
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Sync avatars
+        run: pnpm sync:friends
+
+      - name: Commit changes
+        id: commit
+        run: |
+          git add src/assets/friends src/data/friend-avatars.json
+          if git diff --cached --quiet; then
+            echo "✅ 头像没有变化"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(friends): sync friend avatars"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # GITHUB_TOKEN 推送的提交不会触发 push 事件，这里手动触发 HTML 缓存清理
+      - name: Trigger Cloudflare purge
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run purge-cf-changed-html.yml --ref main

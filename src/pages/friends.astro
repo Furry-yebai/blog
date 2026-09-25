@@ -1,11 +1,35 @@
 ---
 import PageHeader from "@/arcade/components/PageHeader.astro";
 import ArcadeShell from "@/arcade/layouts/ArcadeShell.astro";
+import placeholderAvatar from "@/assets/friend-placeholder.svg";
+import avatarManifest from "@/data/friend-avatars.json";
 import type { Friend } from "@/types/data";
 
+// 头像由 `pnpm sync:friends` 预先拉取到仓库内，页面只引用本站资源
+const avatarFiles = import.meta.glob<ImageMetadata | string>(
+	"@/assets/friends/*",
+	{
+		eager: true,
+		import: "default",
+	},
+);
+const manifest: Record<string, { file: string }> = avatarManifest;
+
+function localAvatar(friend: Friend) {
+	const entry = manifest[friend.url];
+	const asset = entry && avatarFiles[`/src/assets/friends/${entry.file}`];
+	if (!asset) return placeholderAvatar.src;
+	return typeof asset === "string" ? asset : asset.src;
+}
+
 const friends = Object.values(
-	import.meta.glob<Friend>("@/data/friends/*.json", { eager: true, import: "default" }),
-).filter((friend) => friend?.name && friend?.url);
+	import.meta.glob<Friend>("@/data/friends/*.json", {
+		eager: true,
+		import: "default",
+	}),
+)
+	.filter((friend) => friend?.name && friend?.url)
+	.map((friend) => ({ ...friend, avatar: localAvatar(friend) }));
 ---
 
 <ArcadeShell title="友链" description="连接到已登记的网络节点。">
@@ -20,7 +44,13 @@ const friends = Object.values(
 			<div class="arcade-friend-grid">
 				{friends.map((friend, index) => (
 					<a class="arcade-friend-card" href={friend.url} target="_blank" rel="noopener noreferrer">
-						<img src={friend.avatar} loading="lazy" alt={`${friend.name} 的头像`} />
+						<img
+							src={friend.avatar}
+							loading="lazy"
+							alt={`${friend.name} 的头像`}
+							data-fallback={placeholderAvatar.src}
+							onerror="this.onerror=null;this.src=this.dataset.fallback"
+						/>
 						<span>
 							<strong>{friend.name}</strong>
 							<p>{friend.description}</p>
